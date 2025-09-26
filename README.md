@@ -18,3 +18,7 @@ export GLOBAL_AGENT_HTTP_PROXY="http://127.0.0.1:8080"
 export NODE_OPTIONS="$NODE_OPTIONS --require /path/to/node-proxy-bootstrapping/bootstrap.js"
 export NODE_EXTRA_CA_CERTS="$HOME/.mitmproxy/mitmproxy-ca-cert.pem"
 ```
+>[!NOTE]
+>When using the `--experimental-https` flag in Next.js, the `NODE_EXTRA_CA_CERTS` env variable will be overridden by Next.js, which will use the mkcert root CA certificate.
+>
+>To make them work together you will need to generate the certificates for nextjs with mitmproxy's CA certificates, and then specify them using the flags `--experimental-https-cert`, `--experimental-https-key`, and `--experimental--https-ca`. Using `--experimental-https-ca` alone will not work, it will be ignored.
